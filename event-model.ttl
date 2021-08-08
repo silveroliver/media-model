@@ -9,8 +9,9 @@
     rdf:type owl:Ontology ;
     dcterms:title "Events model"@en ;
     dcterms:created "08/08/2021"^^xsd:date ;
-    dcterms:creator "Silver Oliver"@en ;   
-    dcterms:description "A model for describing events like concerts, sports events and live performances."@en .
+    dcterms:creator "Silver Oliver"@en ; 
+    rdfs:comment "A model for describing events like concerts, sports events and live performances."@en ;
+    dcterms:description  <https://raw.githubusercontent.com/silveroliver/media-model/main/events-model.png> .
 
 
 #######  Classes ##### 	
