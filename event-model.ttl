@@ -1,0 +1,103 @@
+@prefix se: <http://data.example.com/ontologies/works/> . 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://data.example.com/ontologies/events>  
+    rdf:type owl:Ontology ;
+    dcterms:title "Events model"@en ;
+    dcterms:created "08/08/2021"^^xsd:date ;
+    dcterms:creator "Silver Oliver"@en ;   
+    dcterms:description "A model for describing events like concerts, sports events and live performances."@en .
+
+
+#######  Classes ##### 	
+
+se:Work rdf:type owl:Class ;
+	rdfs:label "Work"@en ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:Event rdf:type owl:Class ;
+	rdfs:label "Event"@en ;
+	rdfs:subClassOf se:Work ;
+	rdfs:comment "An event that has a time and a location (could be a digital location). Examples are concerts, live chat rooms and sports events"@en ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:EventType rdf:type owl:Class ;
+	rdfs:label "EventType"@en ;
+	rdfs:comment "A type of event."@en ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:EventStatus rdf:type owl:Class ;
+	rdfs:label "EventStatus"@en ;
+	rdfs:comment "The status of an event. Scheduled, live or past event."@en ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:Location rdf:type owl:Class ;
+	rdfs:label "EventStatus"@en ;
+	rdfs:comment "Usually a venue but could be a digital chat room."@en ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+
+#######  Object properties ##### 
+
+se:depictsEvent rdf:type owl:ObjectProperty ;
+	rdfs:label "depictsEvent"@en ;
+	rdfs:comment "A recording or coverage of an event."@en ;
+	rdfs:domain se:Work ;
+	rdfs:range se:Event ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:eventStatus rdf:type owl:ObjectProperty ;
+	rdfs:label "eventStatus"@en ;
+	rdfs:comment "The current status of an event."@en ;
+	rdfs:domain se:Event ;
+	rdfs:range se:EventStatus ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:eventType rdf:type owl:ObjectProperty ;
+	rdfs:label "eventType"@en ;
+	rdfs:comment "The type of event."@en ;
+	rdfs:domain se:Event ;
+	rdfs:range se:EventType ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:venue rdf:type owl:ObjectProperty ;
+	rdfs:label "venue"@en ;
+	rdfs:comment "The venue of the event."@en ;
+	rdfs:domain se:Event ;
+	rdfs:range se:Location ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+
+#######  Data properties ##### 
+
+se:scheduledStartTime rdf:type owl:DatatypeProperty ;
+	rdfs:label "scheduledStartTime"@en ;
+	rdfs:comment "The time an event is scheduled to start."@en ;
+	rdfs:domain se:Event ;
+	rdfs:range xsd:dateTime ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .
+
+se:scheduledEndTime rdf:type owl:DatatypeProperty ;
+	rdfs:label "scheduledEndTime"@en ;
+	rdfs:comment "The time an event is scheduled to end."@en ;
+	rdfs:domain se:Event ;
+	rdfs:range xsd:dateTime ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .	
+
+se:startTime rdf:type owl:DatatypeProperty ;
+	rdfs:label "startTime"@en ;
+	rdfs:comment "The time an event started."@en ;
+	rdfs:domain se:Event ;
+	rdfs:range xsd:dateTime ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .	
+
+se:endTime rdf:type owl:DatatypeProperty ;
+	rdfs:label "endTime"@en ;
+	rdfs:comment "The time an event ended."@en ;
+	rdfs:domain se:Event ;
+	rdfs:range xsd:dateTime ;
+	rdf:isDefinedBy <http://data.example.com/ontologies/events/> .									
