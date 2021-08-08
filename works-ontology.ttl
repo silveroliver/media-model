@@ -1,0 +1,299 @@
+@prefix sw: <http://data.spotify.com/ontologies/works/> . 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://data.example.com/ontologies/works> ; 
+    rdf:type owl:Ontology ;
+    dcterms:title "Works ontology"@en ;
+    dcterms:created "08/08/2021"^^xsd:date ;
+    dcterms:creator "Silver Oliver"@en ;   
+    dcterms:description "A model for describing creative works and asscoaited properites. The model specializes work into a simple set of building blocks for building release strcutures into groups."@en .
+
+
+#######  Classes ##### 	
+
+sw:Thing rdf:type owl:Class ;
+	rdfs:label "Thing"@en ;
+	rdfs:comment "A thing."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:Work rdf:type owl:Class ;
+	rdfs:label "Work"@en ;
+	rdfs:subClassOf sw:Thing ;
+	rdfs:comment "A parent concept for all editorially created things. This holds a common set of properties that all playable things should have."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:Release rdf:type owl:Class ;
+	rdfs:label "Release"@en ;
+	rdfs:subClassOf sw:Work ;
+	rdfs:comment "Real-world release object you can play. It has a release date and potenitally country. (adapted from MusicBrainz defintion)"@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:ReleaseGroup rdf:type owl:Class ;
+	rdfs:label "ReleaseGroup"@en ;
+	rdfs:subClassOf sw:Work ;
+	rdfs:comment "Represents an abstract container like an "album", "series"  or "show". It's a group of releases, with a specified type."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:ReleaseSegment rdf:type owl:Class ;
+	rdfs:label "ReleaseSegment"@en ;
+	rdfs:subClassOf sw:Work ;
+	rdfs:comment "The smallest playable part of a release."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:Agent rdf:type owl:Class ;
+	rdfs:label "Agent"@en ;
+	rdfs:subClassOf sw:Thing ;	
+	rdfs:comment "Any person, group or oganisation who has agency over a work or is the subject of a work."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:Person rdf:type owl:Class ;
+	rdfs:label "Person"@en ;
+	rdfs:subClassOf sw:Agent ;
+	rdfs:comment "Individual person."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:Organization rdf:type owl:Class ;
+	rdfs:label "Organization"@en ;
+	rdfs:subClassOf sw:Agent ;
+	rdfs:comment "A agent consisting of one or more people identified as an organization."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:MediaObject rdf:type owl:Class ;
+	rdfs:label "MediaObject"@en ;
+	rdfs:comment "The consumable media type."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:Category rdf:type owl:Class ;
+	rdfs:label "Category"@en ;
+	rdfs:subClassOf sw:Thing ;	
+	rdfs:comment "One of a number of potenital categories that exist as lists or hierachies each in its own category scheme."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:ReleaseType rdf:type owl:Class ;
+	rdfs:label "ReleaseType"@en ;
+	rdfs:comment "Describes the way in which the release was delivered as opposed to its content. It is the difference between an audiobook and episode. The structure of the work as opposed to its content."@en ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .	
+
+#######  Object properties ##### 
+
+sw:isPartOf rdf:type owl:ObjectProperty ;
+	rdfs:label "isPartOf"@en ;
+	rdfs:comment "A release that is part of a release group. An example would be an episode that is part of a podcast show."@en ;
+	rdfs:domain sw:Release ;
+	rdfs:range sw:ReleaseGroup ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:originatesFrom rdf:type owl:ObjectProperty ;
+	rdfs:label "isPartOf"@en ;
+	rdfs:comment "A release segment orginates from a release. For example a chapter orginates from an audiobook release but the segment can be used in another release (audiobook and talk episode)."@en ;
+	rdfs:domain sw:ReleaseSegment ;
+	rdfs:range sw:Release ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:hasParentReleaseGroup rdf:type owl:ObjectProperty ;
+	rdfs:label "hasParentReleaseGroup"@en ;
+	rdfs:comment "A release group that is part of another release group. Example would be a season of a show that is part of show."@en ;
+	rdfs:domain sw:ReleaseGroup ;
+	rdfs:range sw:ReleaseGroup ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:hasParentReleaseGroup rdf:type owl:ObjectProperty ;
+	rdfs:label "hasParentReleaseGroup"@en ;
+	rdfs:comment "A release group that is part of another release group. Example would be a season of a show that is part of show."@en ;
+	rdfs:domain sw:ReleaseGroup ;
+	rdfs:range sw:ReleaseGroup ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:releaseType rdf:type owl:ObjectProperty ;
+	rdfs:label "releaseType"@en ;
+	rdfs:comment "The type of release it is."@en ;
+	rdfs:domain sw:Release ;
+	rdfs:range sw:ReleaseType ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .	
+
+sw:performer rdf:type owl:ObjectProperty ;
+	rdfs:label "performer"@en ;
+	rdfs:comment "The performer of the work. A performance is specialized by singer, narrator, host etc.."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:narrator rdf:type owl:ObjectProperty ;
+	rdfs:label "narrator"@en ;
+	rdfs:comment "Narrator is a specialization of performer."@en ;
+	rdfs:subPropertyOf sw:performer ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:host rdf:type owl:ObjectProperty ;
+	rdfs:label "host"@en ;
+	rdfs:comment "Host is a specialization of performer."@en ;
+	rdfs:subPropertyOf sw:performer ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:singer rdf:type owl:ObjectProperty ;
+	rdfs:label "singer"@en ;
+	rdfs:comment "Singer is a specialization of performer."@en ;
+	rdfs:subPropertyOf sw:performer ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .			
+
+sw:creator rdf:type owl:ObjectProperty ;
+	rdfs:label "creator"@en ;
+	rdfs:comment "Creator is the agent repsonsible for the creation or authorship of the work. Creator is specialized by author."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:author rdf:type owl:ObjectProperty ;
+	rdfs:label "author"@en ;
+	rdfs:comment "Author is a spacialization of creator often assocaited with with written word."@en ;
+	rdfs:subPropertyOf sw:creator ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:production rdf:type owl:ObjectProperty ;
+	rdfs:label "production"@en ;
+	rdfs:comment "Assocaited a work with the agent responsible for production."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .						
+
+sw:distribution rdf:type owl:ObjectProperty ;
+	rdfs:label "production"@en ;
+	rdfs:comment "Assocaited a work with the agent responsible for distribution."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:promotion rdf:type owl:ObjectProperty ;
+	rdfs:label "promotion"@en ;
+	rdfs:comment "Assocaited a work with the agent responsible for promotion."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Agent ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .	
+
+sw:primaryMediaObject rdf:type owl:ObjectProperty ;
+	rdfs:label "primaryMediaObject"@en ;
+	rdfs:comment "The primary playable media object type."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:MediaObject ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:category rdf:type owl:ObjectProperty ;
+	rdfs:label "category"@en ;
+	rdfs:comment "Associates a work with a one of a number of categories."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:formOfExpression rdf:type owl:ObjectProperty ;
+	rdfs:label "formOfExpression"@en ;
+	rdfs:comment "The form the work takes. Music, spoken word, ambient sounds."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:subject rdf:type owl:ObjectProperty ;
+	rdfs:label "subject"@en ;
+	rdfs:comment "The subject of the work. The can be a category, person, another work. So subject points to thing as opposed to categories."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Thing ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:audience rdf:type owl:ObjectProperty ;
+	rdfs:label "audience"@en ;
+	rdfs:comment "The intended audience of the work."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:format rdf:type owl:ObjectProperty ;
+	rdfs:label "format"@en ;
+	rdfs:comment "The format or editorial structure of the work. Chatshow, narrated audio book, play."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:recencyType rdf:type owl:ObjectProperty ;
+	rdfs:label "recencyType"@en ;
+	rdfs:comment "How frequently are releases made."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:releaseCadence rdf:type owl:ObjectProperty ;
+	rdfs:label "releaseCadence"@en ;
+	rdfs:comment "The cadence of the releases."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:language rdf:type owl:ObjectProperty ;
+	rdfs:label "language"@en ;
+	rdfs:comment "The language of the work."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .	
+
+sw:activity rdf:type owl:ObjectProperty ;
+	rdfs:label "activity"@en ;
+	rdfs:comment "The type of activity that this work would complement."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:musicGenre rdf:type owl:ObjectProperty ;
+	rdfs:label "musicGenre"@en ;
+	rdfs:comment "The genre of music that work belongs. Music genre can also be the subject of a work."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:podcastCategory rdf:type owl:ObjectProperty ;
+	rdfs:label "activity"@en ;
+	rdfs:comment "The podcast category this work belongs to."@en ;
+	rdfs:subPropertyOf sw:category ;
+	rdfs:domain sw:Work ;
+	rdfs:range sw:Category ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .				
+
+#######  Data properties ##### 
+
+sw:releaseDate rdf:type owl:DatatypeProperty ;
+	rdfs:label "releaseDate"@en ;
+	rdfs:comment "The date a release was released."@en ;
+	rdfs:domain sw:Release ;
+	rdfs:range xsd:dateTime ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:title rdf:type owl:DatatypeProperty ;
+	rdfs:label "releaseDate"@en ;
+	rdfs:comment "A works title."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range xsd:string ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
+
+sw:description rdf:type owl:DatatypeProperty ;
+	rdfs:label "description"@en ;
+	rdfs:comment "A works description."@en ;
+	rdfs:domain sw:Work ;
+	rdfs:range xsd:string ;
+	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .	
