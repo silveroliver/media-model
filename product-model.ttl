@@ -1,4 +1,4 @@
-@prefix sp: <http://data.spotify.com/ontologies/products/> . 
+@prefix sp: <http://data.example.com/ontologies/products/> . 
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
