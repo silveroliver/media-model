@@ -10,7 +10,8 @@
     dcterms:title "Products model"@en ;
     dcterms:created "08/08/2021"^^xsd:date ;
     dcterms:creator "Silver Oliver"@en ;   
-    dcterms:description "A model for describing offers for products such as merchandise and event tickets ."@en , <https://github.com/silveroliver/media-model/blob/main/product-model.png> .
+    rdfs:comment "A model for describing offers for products such as merchandise and event tickets ."@en ;
+    dcterms:description  <https://github.com/silveroliver/media-model/blob/main/product-model.png> .
 
 
 #######  Classes ##### 	
