@@ -23,11 +23,11 @@ sp:Offer rdf:type owl:Class ;
 
 sp:Thing rdf:type owl:Class ;
 	rdfs:label "Thing"@en ;
-	rdf:isDefinedBy <http://data.spotify.com/ontologies/products/> .
+	rdf:isDefinedBy <http://data.example.com/ontologies/products/> .
 
 sp:Agent rdf:type owl:Class ;
 	rdfs:label "Agent"@en ;
-	rdf:isDefinedBy <http://data.spotify.com/ontologies/products/> .
+	rdf:isDefinedBy <http://data.example.com/ontologies/products/> .
 
 sp:Price rdf:type owl:Class ;
 	rdfs:label "Price"@en ;
@@ -51,35 +51,35 @@ sp:associatedOffer rdf:type owl:ObjectProperty ;
 	rdfs:comment "A offer related to this thing. Might be a ticket for an event, merchanadise for a band or book related to a work."@en ;
 	rdfs:domain sp:Thing ;
 	rdfs:range sp:Offer ;
-	rdf:isDefinedBy <http://data.spotify.com/ontologies/products/> .
+	rdf:isDefinedBy <http://data.example.com/ontologies/products/> .
 
 sp:offeredBy rdf:type owl:ObjectProperty ;
 	rdfs:label "offeredBy"@en ;
 	rdfs:comment "The agent usually a business who is making the offer."@en ;
 	rdfs:domain sp:Offer ;
 	rdfs:range sp:Agent ;
-	rdf:isDefinedBy <http://data.spotify.com/ontologies/products/> .
+	rdf:isDefinedBy <http://data.example.com/ontologies/products/> .
 
 sp:price rdf:type owl:ObjectProperty ;
 	rdfs:label "price"@en ;
 	rdfs:comment "The price the product is being offerd at."@en ;
 	rdfs:domain sp:Offer ;
 	rdfs:range sp:Price ;
-	rdf:isDefinedBy <http://data.spotify.com/ontologies/products/> .				
+	rdf:isDefinedBy <http://data.example.com/ontologies/products/> .				
 
 sp:offersProduct rdf:type owl:ObjectProperty ;
 	rdfs:label "offersProduct"@en ;
 	rdfs:comment "The product being offered."@en ;
 	rdfs:domain sp:Offer ;
 	rdfs:range sp:Product ;
-	rdf:isDefinedBy <http://data.spotify.com/ontologies/products/> .
+	rdf:isDefinedBy <http://data.example.com/ontologies/products/> .
 
 sp:productCategory rdf:type owl:ObjectProperty ;
 	rdfs:label "productCategory"@en ;
 	rdfs:comment "The category of product being offered."@en ;
 	rdfs:domain sp:Product ;
 	rdfs:range sp:ProductCategory ;
-	rdf:isDefinedBy <http://data.spotify.com/ontologies/products/> .
+	rdf:isDefinedBy <http://data.example.com/ontologies/products/> .
 
 #######  Data properties ##### 
 
