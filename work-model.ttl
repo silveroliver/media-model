@@ -1,16 +1,16 @@
 @prefix sw: <http://data.example.com/ontologies/works/> . 
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/terms/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 
 <http://data.example.com/ontologies/works>  
     rdf:type owl:Ontology ;
-    dcterms:title "Works model"@en ;
-    dcterms:created "08/08/2021"^^xsd:date ;
-    dcterms:creator "Silver Oliver"@en ;   
-    dcterms:description "A model for describing creative works and asscoaited properites. The model specializes work into a simple set of building blocks for building release strcutures into groups."@en , <https://github.com/silveroliver/media-model/blob/main/work-model.png> .
+    dc:title "Works model"@en ;
+    dc:created "08/08/2021"^^xsd:date ;
+    dc:creator "Silver Oliver"@en ;   
+    dc:description "A model for describing creative works and associated properites. The model specializes work into a simple set of building blocks for building release strcutures into groups."@en , <https://github.com/silveroliver/media-model/blob/main/work-model.png> .
 
 
 #######  Classes ##### 	
