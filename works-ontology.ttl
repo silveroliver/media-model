@@ -5,7 +5,7 @@
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 
-<http://data.example.com/ontologies/works> ; 
+<http://data.example.com/ontologies/works>  
     rdf:type owl:Ontology ;
     dcterms:title "Works ontology"@en ;
     dcterms:created "08/08/2021"^^xsd:date ;
@@ -35,7 +35,7 @@ sw:Release rdf:type owl:Class ;
 sw:ReleaseGroup rdf:type owl:Class ;
 	rdfs:label "ReleaseGroup"@en ;
 	rdfs:subClassOf sw:Work ;
-	rdfs:comment "Represents an abstract container like an "album", "series"  or "show". It's a group of releases, with a specified type."@en ;
+	rdfs:comment "Represents an abstract container like an album, series  or show. It's a group of releases, with a specified type."@en ;
 	rdf:isDefinedBy <http://data.spotify.com/ontologies/works/> .
 
 sw:ReleaseSegment rdf:type owl:Class ;
