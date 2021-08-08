@@ -10,7 +10,7 @@
     dcterms:title "Works model"@en ;
     dcterms:created "08/08/2021"^^xsd:date ;
     dcterms:creator "Silver Oliver"@en ;   
-    dcterms:description "A model for describing creative works and asscoaited properites. The model specializes work into a simple set of building blocks for building release strcutures into groups."@en .
+    dcterms:description "A model for describing creative works and asscoaited properites. The model specializes work into a simple set of building blocks for building release strcutures into groups."@en , <https://github.com/silveroliver/media-model/blob/main/work-model.png> .
 
 
 #######  Classes ##### 	
