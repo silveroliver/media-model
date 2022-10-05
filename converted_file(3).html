@@ -1,0 +1,3742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IPTC Sport Schema</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <style>
+        #pylode {
+            position: fixed;
+            top: 130px;
+            left: -60px;
+            font-size: small;
+            transform: rotate(-90deg);
+            color: grey;
+        }
+        #pylode a {
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #005A9C;
+        }
+        #pylode a:hover {
+            color: #333;
+        }
+
+        .cardinality {
+            font-style: italic;
+            color: #aa00aa;
+        }
+
+        dt {
+            font-weight: bold;
+            padding: 5px 0 5px 0;
+        }
+
+        ul.hlist {
+            list-style-type: none;
+            border: 1px solid navy;
+            padding:5px;
+            background-color: #F4FFFF;
+        }
+
+        ul.hierarchy {
+            border: 1px solid navy;
+            padding: 5px 25px 5px 25px;
+            background-color: #F4FFFF;
+        }
+
+
+        ul.hlist li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .entity {
+            border: 1px solid navy;
+            margin:5px 0 5px 0;
+            padding: 5px;
+        }
+
+        .entity th {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .entity th,
+        .entity td {
+            padding-bottom: 20px;
+        }
+
+        .entity table th {
+            text-align: left;
+        }
+
+        section#overview img {
+            max-width: 1000px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left
+        }
+        h1, h2, h3 {
+            color: #005A9C; background: white
+        }
+        h1 {
+            font: 170% sans-serif;
+            line-height: 110%;
+        }
+        h2 {
+            font: 140% sans-serif;
+            margin-top:40px;
+        }
+        h3 {
+            font: 120% sans-serif;
+            margin-top: 3px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid navy;
+        }
+        h4 { font: bold 100% sans-serif }
+        h5 { font: italic 100% sans-serif }
+        h6 { font: small-caps 100% sans-serif }
+
+
+        body {
+            padding: 2em 70px 2em 70px;
+            margin: 0;
+            font-family: sans-serif;
+            color: black;
+            background: white;
+            background-position: top left;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            text-align: justify;
+        }
+
+        section {
+            max-width: 1500px;
+        }
+
+        .figure {
+            margin-bottom: 20px;
+        }
+
+        :link { color: #00C; background: transparent }
+        :visited { color: #609; background: transparent }
+        a:active { color: #C00; background: transparent }
+
+        .sup-c,
+        .sup-op,
+        .sup-fp,
+        .sup-dp,
+        .sup-ap,
+        .sup-p,
+        .sup-ni,
+        .sup-cp,
+        .sup-cl {
+            cursor:help;
+            margin-left: 3px;
+        }
+
+        .sup-c {
+            color:orange;
+        }
+
+        .sup-op {
+            color:navy;
+        }
+
+        .sup-fp {
+            color:lightskyblue;
+        }
+
+        .sup-dp {
+            color:green;
+        }
+
+        .sup-ap {
+            color:darkred;
+        }
+
+        .sup-p {
+            color:black;
+        }
+
+        .sup-ni {
+            color:brown;
+        }
+
+        .sup-cp {
+            color:orange;
+        }
+
+        .sup-cl {
+            color:darkred;
+        }
+
+        code {
+            font-size: large;
+            color: darkred;
+        }
+
+        /* less prominent links for properties */
+        .proplink {
+            color: #336;
+            text-decoration: none;
+        }
+    </style>
+    
+    <script type="application/ld+json">
+      [
+  {
+    "@id": "https://sportschema.org/ontologies/main/",
+    "@type": [
+      "https://schema.org/DefinedTermSet"
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "<p>A high level model to describe the core elements of competitive sport</p>"
+      }
+    ],
+    "https://schema.org/license": [
+      {
+        "@id": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "IPTC Sport Schema"
+      }
+    ],
+    "https://schema.org/rights": [
+      {
+        "@value": "&copy; (C) International Press Telecommunications Council 2022"
+      }
+    ]
+  }
+]
+    </script>
+</head>
+<body>
+  <div id="pylode">made by <a href="http://github.com/rdflib/pyLODE">
+    <span style="color:#329545;">p</span><span style="color:#f9cb33;">y</span>LODE</a>
+    <span style="font-size:smaller;">2.8.3</span>
+  </div>
+  <h1>IPTC Sport Schema</h1>
+<section id="metadata">
+    <h2 style="display:none;">Metadata</h2>
+    <dl>
+        <dt>URI</dt>
+        <dd><code>https://sportschema.org/ontologies/main/</code></dd>
+        <dt><a class="proplink" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/creator">Creator</a>(s)</dt>
+        <dd>
+            IPTC Sports Content Working Group<br/>
+        </dd>
+        <dt><a class="proplink" href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/created">Created</a></dt>
+        <dd>2021-07-20</dd>
+        <dt>License &amp; Rights</dt>
+        <dd>
+            <a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a><br />
+            &copy; (C) International Press Telecommunications Council 2022
+        </dd>
+        <dt>Ontology RDF</dt>
+        <dd><a href="data_file.ttl">RDF (turtle)</a></dd>
+    </dl>
+    <h2>Description</h2>
+    <div id="description">
+        <p>A high level model to describe the core elements of competitive sport</p>
+    </div>
+</section>
+<section id="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#properties">Properties</a></li>
+        <li><a href="#namespaces">Namespaces</a></li>
+        <li><a href="#legend">Legend</a></li>
+    </ol>
+</section>
+<section id="overview">
+    <h2>Overview</h2>
+    <div class="figure">
+        <img src="https://raw.githubusercontent.com/silveroliver/media-model/main/iptc-sport-model.png" alt="Event model diagram" width="900" height="500">
+        <div class="caption"><strong>Figure 1:</strong> Ontology overview</div>
+    </div>
+</section>
+  <section id="classes">
+    <h2>Classes <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#Action">Action</a></li>
+        <li><a href="#Agent">Agent</a></li>
+        <li><a href="#Associate">Associate</a></li>
+        <li><a href="#AssociateParticipation">Associate Participation</a></li>
+        <li><a href="#Athlete">Athlete</a></li>
+        <li><a href="#Competition">Competition</a></li>
+        <li><a href="#CompetitionPhase">Competition Phase</a></li>
+        <li><a href="#CompetitorParticipation">Competitor Participation</a></li>
+        <li><a href="#Event">Event</a></li>
+        <li><a href="#GoverningBody">Governing Body</a></li>
+        <li><a href="#Individual">Individual</a></li>
+        <li><a href="#IndividualMembership">Individual Membership</a></li>
+        <li><a href="#IndividualParticipation">Individual Participation</a></li>
+        <li><a href="#Membership">Membership</a></li>
+        <li><a href="#Official">Official</a></li>
+        <li><a href="#OfficialParticipation">Official Participation</a></li>
+        <li><a href="#Participation">Participation</a></li>
+        <li><a href="#ParticipationSplit">Participation Split</a></li>
+        <li><a href="#Site">Site</a></li>
+        <li><a href="#Team">Team</a></li>
+        <li><a href="#TeamParticipation">Team Participation</a></li>
+    </ul>
+    <div class="entity class" id="Action">
+        <h3>Action<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Action</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Something that happens during an event: a kick, a goal, a foul etc</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/saveType">sport:saveType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/lastModified">sport:lastModified</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/scoreAttemptDescription">sport:scoreAttemptDescription</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/periodValue">sport:periodValue</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/event">sport:event</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/actionParticipation">sport:actionParticipation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/bodyPart">sport:bodyPart</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/passDescription">sport:passDescription</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/startLocation">sport:startLocation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/timeElapsed">sport:timeElapsed</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/goalLocation">sport:goalLocation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/sequenceNumber">sport:sequenceNumber</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/role">sport:role</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/penaltyLevel">sport:penaltyLevel</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/scoreAttemptSituation">sport:scoreAttemptSituation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/shotType">sport:shotType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/timeRemaining">sport:timeRemaining</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/comment">sport:comment</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/passType">sport:passType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/scoreAttemptResult">sport:scoreAttemptResult</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/class">sport:class</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/passMethod">sport:passMethod</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/distance">sport:distance</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/recipientType">sport:recipientType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/actionDateTime">sport:actionDateTime</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/substitutionReason">sport:substitutionReason</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/shotDistance">sport:shotDistance</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/penaltyType">sport:penaltyType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/shotDistanceUnits">sport:shotDistanceUnits</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/saveMethod">sport:saveMethod</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/oppositePlay">sport:oppositePlay</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/endLocation">sport:endLocation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/scoreAttemptType">sport:scoreAttemptType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/zone">sport:zone</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/minutesElapsed">sport:minutesElapsed</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/result">sport:result</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/angle">sport:angle</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/fieldLocation">sport:fieldLocation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/actionType">sport:actionType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/timeAddition">sport:timeAddition</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/scoreAttemptSide">sport:scoreAttemptSide</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Agent">
+        <h3>Agent<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Agent</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A participant in a sport event.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Individual">sport:Individual</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://sportschema.org/ontologies/main/Team">sport:Team</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/participationBy">sport:participationBy</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Associate">
+        <h3>Associate<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Associate</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A person assisting competitor(s) in an event but not competing themselves, e.g. a football manager or coach</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Individual">sport:Individual</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="AssociateParticipation">
+        <h3>Associate Participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/AssociateParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The particpation of an associate who supports players and teams, e.g. coach, manager, trainer</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Athlete">
+        <h3>Athlete<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Athlete</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A competitor in an individual event or a member of a team</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Individual">sport:Individual</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/membershipBy">sport:membershipBy</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Competition">
+        <h3>Competition<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Competition</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A grouping of events usually based on proximity by time.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/sport">sport:sport</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/governingBody">sport:governingBody</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/parentCompetition">sport:parentCompetition</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/competitionParticipation">sport:competitionParticipation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/competitionType">sport:competitionType</a><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/competition">sport:competition</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/parentCompetition">sport:parentCompetition</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="CompetitionPhase">
+        <h3>Competition Phase<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/CompetitionPhase</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A sub-group of events within a Competition such as the semi-finals.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/phaseParticipation">sport:phaseParticipation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/competitionPhaseType">sport:competitionPhaseType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/competitionFormat">sport:competitionFormat</a><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/competitionPhase">sport:competitionPhase</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="CompetitorParticipation">
+        <h3>Competitor Participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/CompetitorParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The participation of an actor that can win or lose an event.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/TeamParticipation">sport:TeamParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://sportschema.org/ontologies/main/IndividualParticipation">sport:IndividualParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/positionEvent">sport:positionEvent</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/rank">sport:rank</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/eventOutcomeType">sport:eventOutcomeType</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/eventOutcome">sport:eventOutcome</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Event">
+        <h3>Event<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Event</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A contest of competitive actions that generates statistical results.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/eventParticipation">sport:eventParticipation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/competitionPhase">sport:competitionPhase</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/site">sport:site</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/endDateTime">sport:endDateTime</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/competition">sport:competition</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/eventStatus">sport:eventStatus</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/subEvent">sport:subEvent</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/attendance">sport:attendance</a><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/event">sport:event</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/subEvent">sport:subEvent</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="GoverningBody">
+        <h3>Governing Body<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/GoverningBody</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The organisation that creates and polices the rules of a sports competition.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/governingBody">sport:governingBody</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Individual">
+        <h3>Individual<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Individual</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>An individual taking part in an event on their own or as part of a team. Could be a person or an animal such as a dog or horse.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Agent">sport:Agent</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Associate">sport:Associate</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://sportschema.org/ontologies/main/Athlete">sport:Athlete</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://sportschema.org/ontologies/main/Official">sport:Official</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/dateOfBirth">sport:dateOfBirth</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/nationality">sport:nationality</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="IndividualMembership">
+        <h3>Individual Membership<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/IndividualMembership</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A player's membership in a team</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Membership">sport:Membership</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/uniformNumber">sport:uniformNumber</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/membershipBy">sport:membershipBy</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/membershipOf">sport:membershipOf</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/positionRegular">sport:positionRegular</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="IndividualParticipation">
+        <h3>Individual Participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/IndividualParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The participation of an individual in an event</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitorParticipation">sport:CompetitorParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/playerStatus">sport:playerStatus</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Membership">
+        <h3>Membership<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Membership</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The membership of an entity in another entity for a given period of time</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/IndividualMembership">sport:IndividualMembership</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/endDate">sport:endDate</a><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/membership">sport:membership</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Official">
+        <h3>Official<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Official</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A person who ensures that the sports event is played according to its rules. Also referred to as umpire or referee.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Individual">sport:Individual</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="OfficialParticipation">
+        <h3>Official Participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/OfficialParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The participation of an offcial in an event</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Participation">
+        <h3>Participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Participation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The participation of an actor in an event.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/OfficialParticipation">sport:OfficialParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://sportschema.org/ontologies/main/CompetitorParticipation">sport:CompetitorParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://sportschema.org/ontologies/main/AssociateParticipation">sport:AssociateParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/participationBy">sport:participationBy</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/participationSplit">sport:participationSplit</a><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/phaseParticipation">sport:phaseParticipation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/competitionParticipation">sport:competitionParticipation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/actionParticipation">sport:actionParticipation</a><br/>
+                    <a href="https://sportschema.org/ontologies/main/eventParticipation">sport:eventParticipation</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="ParticipationSplit">
+        <h3>Participation Split<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/ParticipationSplit</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Representation of part of a participation of an actor in an event or season, such as one half of a football match or all home games.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/participationSplitType">sport:participationSplitType</a><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/participationSplit">sport:participationSplit</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Site">
+        <h3>Site<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Site</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The location where an Event takes place</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/site">sport:site</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Team">
+        <h3>Team<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/Team</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>A group of individuals competing as one entity</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Agent">sport:Agent</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/membership">sport:membership</a><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/membershipOf">sport:membershipOf</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="TeamParticipation">
+        <h3>Team Participation<sup title="class" class="sup-c">c</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/TeamParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>The participation of a team in an event</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitorParticipation">sport:CompetitorParticipation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/alignment">sport:alignment</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<section id="properties">
+    <h2>Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#actiondate-time">action date-time</a></li>
+        <li><a href="#actionparticipation">action participation</a></li>
+        <li><a href="#actiontype">action type</a></li>
+        <li><a href="#alignment">alignment</a></li>
+        <li><a href="#angle">angle</a></li>
+        <li><a href="#attendance">attendance</a></li>
+        <li><a href="#bodypart">body part</a></li>
+        <li><a href="#class">class</a></li>
+        <li><a href="#comment">comment</a></li>
+        <li><a href="#competition">competition</a></li>
+        <li><a href="#competitionform">competition form</a></li>
+        <li><a href="#competitionparticipation">competition participation</a></li>
+        <li><a href="#competitionphase">competition phase</a></li>
+        <li><a href="#competitionphasetype">competition phase type</a></li>
+        <li><a href="#competitiontype">competition type</a></li>
+        <li><a href="#dateofbirth">date of birth</a></li>
+        <li><a href="#distance">distance</a></li>
+        <li><a href="#enddate">end date</a></li>
+        <li><a href="#enddatetime">end datetime</a></li>
+        <li><a href="#endlocation">end location</a></li>
+        <li><a href="#event">event</a></li>
+        <li><a href="#eventoutcome">event outcome</a></li>
+        <li><a href="#eventoutcometype">event outcome type</a></li>
+        <li><a href="#eventparticipation">event participation</a></li>
+        <li><a href="#eventstatus">event status</a></li>
+        <li><a href="#fieldlocation">field location</a></li>
+        <li><a href="#goallocation">goal location</a></li>
+        <li><a href="#governingbody">governing body</a></li>
+        <li><a href="#lastmodified">last modified</a></li>
+        <li><a href="#membership">membership</a></li>
+        <li><a href="#membershipby">membership by</a></li>
+        <li><a href="#membershipof">membership of</a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#nationality">nationality</a></li>
+        <li><a href="#oppositePlay"></a></li>
+        <li><a href="#parentcompetition">parent competition</a></li>
+        <li><a href="#participationBy">participationBy</a></li>
+        <li><a href="#participationsplit">participation split</a></li>
+        <li><a href="#participationsplittype">participation split type</a></li>
+        <li><a href="#passdescription">pass description</a></li>
+        <li><a href="#passmethod">pass method</a></li>
+        <li><a href="#passtype">pass type</a></li>
+        <li><a href="#penaltyLevel"></a></li>
+        <li><a href="#penaltytype">penalty type</a></li>
+        <li><a href="#periodvalue">period value</a></li>
+        <li><a href="#phaseparticipation">phase participation</a></li>
+        <li><a href="#playerstatus">player status</a></li>
+        <li><a href="#position(event)">position (event)</a></li>
+        <li><a href="#position(regular)">position (regular)</a></li>
+        <li><a href="#rank">rank</a></li>
+        <li><a href="#recipienttype">recipient type</a></li>
+        <li><a href="#result">result</a></li>
+        <li><a href="#role">role</a></li>
+        <li><a href="#savemethod">save method</a></li>
+        <li><a href="#savetype">save type</a></li>
+        <li><a href="#score">score</a></li>
+        <li><a href="#scoreAttemptDescription"></a></li>
+        <li><a href="#scoreattemptresult">score attempt result</a></li>
+        <li><a href="#scoreattemptside">score attempt side</a></li>
+        <li><a href="#scoreattemptsituation">score attempt situation</a></li>
+        <li><a href="#scoreattempttype">score attempt type</a></li>
+        <li><a href="#scoreunits">score units</a></li>
+        <li><a href="#sequencenumber">sequence number</a></li>
+        <li><a href="#shotdistance">shot distance</a></li>
+        <li><a href="#shotdistanceunits">shot distance units</a></li>
+        <li><a href="#shottype">shot type</a></li>
+        <li><a href="#site">site</a></li>
+        <li><a href="#sport">sport</a></li>
+        <li><a href="#startdate">start date</a></li>
+        <li><a href="#startdatetime">start datetime</a></li>
+        <li><a href="#startlocation">start location</a></li>
+        <li><a href="#subEvent">subEvent</a></li>
+        <li><a href="#substitutionreason">substitution reason</a></li>
+        <li><a href="#timeaddition">time addition</a></li>
+        <li><a href="#timeelapsed">time elapsed</a></li>
+        <li><a href="#timeremaining">time remaining</a></li>
+        <li><a href="#uniformnumber">uniform number</a></li>
+        <li><a href="#zone">zone</a></li>
+    </ul>
+    <div class="entity property" id="actiondate-time">
+        <h3>action date-time<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/actionDateTime</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Date and time when this play/action took place on the field.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#dateTime">xsd:dateTime</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="actionparticipation">
+        <h3>action participation<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/actionParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to the participation by an agent in a single action
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="actiontype">
+        <h3>action type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/actionType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The type of competitive action taken on the field of play. See 'action' SportsML vocabs for various sports: http://cv.iptc.org/newscodes/spamfaction/ http://cv.iptc.org/newscodes/spbblaction/ http://cv.iptc.org/newscodes/spbkbaction/ http://cv.iptc.org/newscodes/spichaction/ http://cv.iptc.org/newscodes/spmcraction/ http://cv.iptc.org/newscodes/rgxaction/ http://cv.iptc.org/newscodes/spsocaction/ http://cv.iptc.org/newscodes/sptenaction/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="alignment">
+        <h3>alignment<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/alignment</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The association between a Team and a Site, e.g. 'home' or 'away'
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/TeamParticipation">sport:TeamParticipation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="angle">
+        <h3>angle<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/angle</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Angle on the field of the play.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="attendance">
+        <h3>attendance<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/attendance</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The number of people attending an event
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="bodypart">
+        <h3>body part<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/bodyPart</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Body part used to perform an action.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="class">
+        <h3>class<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/class</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    An open placeholder for categorization.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="comment">
+        <h3>comment<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/comment</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Textual comment of the action
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="competition">
+        <h3>competition<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/competition</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The Competition that an Event is part of
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Competition">sport:Competition</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="competitionform">
+        <h3>competition form<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/competitionFormat</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Competition format: round robin, sudden death etc
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitionPhase">sport:CompetitionPhase</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="competitionparticipation">
+        <h3>competition participation<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/competitionParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to the participation by an agent in a group of events
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Competition">sport:Competition</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="competitionphase">
+        <h3>competition phase<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/competitionPhase</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The CompetitionPhase that an Event is part of (such as a round or a finals phase)
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitionPhase">sport:CompetitionPhase</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="competitionphasetype">
+        <h3>competition phase type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/competitionPhaseType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Type of the competition phase - regular week, final etc
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitionPhase">sport:CompetitionPhase</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="competitiontype">
+        <h3>competition type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/competitionType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The type of a Competition, e.g. spct:recurring-competition or spct:competition
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Competition">sport:Competition</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="dateofbirth">
+        <h3>date of birth<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/dateOfBirth</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The date of birth of a person
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Individual">sport:Individual</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="distance">
+        <h3>distance<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/distance</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Distance of the action.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="enddate">
+        <h3>end date<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/endDate</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The date on which a membership ends
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Membership">sport:Membership</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="enddatetime">
+        <h3>end datetime<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/endDateTime</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The date and time on which an event ends
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="endlocation">
+        <h3>end location<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/endLocation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    A string indicating where on the court the action occured. Could be an approximate region, or a more complex value adhering to some elaborate coordinate system.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="event">
+        <h3>event<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/event</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The event in which an Action took place
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="eventoutcome">
+        <h3>event outcome<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/eventOutcome</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The outcome of an event (win, loss etc)
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitorParticipation">sport:CompetitorParticipation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="eventoutcometype">
+        <h3>event outcome type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/eventOutcomeType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The type of outcome of an event (win, loss etc)
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitorParticipation">sport:CompetitorParticipation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="eventparticipation">
+        <h3>event participation<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/eventParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to the participation by an agent in a single event
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="eventstatus">
+        <h3>event status<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/eventStatus</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Event's current status (e.g. post-event)
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="fieldlocation">
+        <h3>field location<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/fieldLocation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Recommended x,y 0-100. The location of the action on the field of play represented as a grid.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="goallocation">
+        <h3>goal location<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/goalLocation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Recommended x,y 0-100. The location on goal-mouth grid in which the ball/puck entered.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="governingbody">
+        <h3>governing body<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/governingBody</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The organisation that regulates a given Parent Competition
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Competition">sport:Competition</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/GoverningBody">sport:GoverningBody</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="lastmodified">
+        <h3>last modified<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/lastModified</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Date and time when this play/action record was last modified. This would be the record from the reporter's data entry system.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="membership">
+        <h3>membership<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/membership</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link between a team and a membership object
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Team">sport:Team</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Membership">sport:Membership</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="membershipby">
+        <h3>membership by<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/membershipBy</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link between a membership and an individual athlete
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/IndividualMembership">sport:IndividualMembership</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Athlete">sport:Athlete</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="membershipof">
+        <h3>membership of<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/membershipOf</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link between a membership and a team
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/IndividualMembership">sport:IndividualMembership</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Team">sport:Team</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="">
+        <h3><sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/minutesElapsed</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="nationality">
+        <h3>nationality<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/nationality</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The country an individual is identified with
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Individual">sport:Individual</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="oppositePlay">
+        <h3><sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/oppositePlay</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="parentcompetition">
+        <h3>parent competition<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/parentCompetition</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to the ParentCompetition of a Competition
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Competition">sport:Competition</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Competition">sport:Competition</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="participationBy">
+        <h3>participationBy<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/participationBy</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to a person or team participating in an event, season or action
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Agent">sport:Agent</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="participationsplit">
+        <h3>participation split<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/participationSplit</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to a representation of part of a participation of an actor in an event or season, such as one half of a football match or all home games.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/ParticipationSplit">sport:ParticipationSplit</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="participationsplittype">
+        <h3>participation split type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/participationSplitType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The type of a participation split, e.g. 'home games' or 'first half'
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/ParticipationSplit">sport:ParticipationSplit</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="passdescription">
+        <h3>pass description<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/passDescription</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    description of the pass taken in this action
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="passmethod">
+        <h3>pass method<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/passMethod</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Method used in this pass
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="passtype">
+        <h3>pass type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/passType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Type of this pass
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="penaltyLevel">
+        <h3><sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/penaltyLevel</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="penaltytype">
+        <h3>penalty type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/penaltyType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The degree of punishment for the penalty eg. yellow or red card, major, minor, game misconduct, etc. See 'penaltylevel' SportsML vocabs for various sports: http://cv.iptc.org/newscodes/spbkbpenaltylevel/ http://cv.iptc.org/newscodes/spichpenaltylevel/ http://cv.iptc.org/newscodes/sprgxpenaltylevel/ http://cv.iptc.org/newscodes/spsocpenaltylevel/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="periodvalue">
+        <h3>period value<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/periodValue</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Used for tracking stats and events by period.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="phaseparticipation">
+        <h3>phase participation<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/phaseParticipation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to the participation by an agent in a competition phase
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitionPhase">sport:CompetitionPhase</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Participation">sport:Participation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="playerstatus">
+        <h3>player status<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/playerStatus</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Player status for a given event (e.g. starter or bench)
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/IndividualParticipation">sport:IndividualParticipation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="position(event)">
+        <h3>position (event)<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/positionEvent</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The position in a team taken for an individual event
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitorParticipation">sport:CompetitorParticipation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="position(regular)">
+        <h3>position (regular)<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/positionRegular</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The position in a team usually taken by a given player or associate
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/IndividualMembership">sport:IndividualMembership</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="rank">
+        <h3>rank<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/rank</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The rank of a player or team in standings etc.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/CompetitorParticipation">sport:CompetitorParticipation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="recipienttype">
+        <h3>recipient type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/recipientType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Whether the receiver of the penalty was the team, the player, a coach, a ref, etc. SportsML vocab uri: http://cv.iptc.org/newscodes/sprecipienttype/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="result">
+        <h3>result<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/result</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The result of the play or action. See 'result' SportsML vocabs for various sports: http://cv.iptc.org/newscodes/spamfresult/ http://cv.iptc.org/newscodes/spsocresult/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="role">
+        <h3>role<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/role</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    A team's or individual's role in a given action
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="savemethod">
+        <h3>save method<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/saveMethod</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    method used for this save
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="savetype">
+        <h3>save type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/saveType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    type of save performed in this action
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="score">
+        <h3>score<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/score</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    A team's or individual's score in a given event
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="scoreAttemptDescription">
+        <h3><sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/scoreAttemptDescription</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="scoreattemptresult">
+        <h3>score attempt result<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/scoreAttemptResult</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The result of the score attempt eg. blocked, missed, etc. See 'scoreattemptresult' SportsML vocabs for various sports: http://cv.iptc.org/newscodes/spbkbscoreattemptresult/ http://cv.iptc.org/newscodes/spichscoreattemtresult/ http://cv.iptc.org/newscodes/sprgxscoreattemptresult/ http://cv.iptc.org/newscodes/spsocscoreattemptresult/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="scoreattemptside">
+        <h3>score attempt side<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/scoreAttemptSide</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Side of the body of the player attempting to score
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="scoreattemptsituation">
+        <h3>score attempt situation<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/scoreAttemptSituation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Describing the situation surrounding the score attempt
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="scoreattempttype">
+        <h3>score attempt type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/scoreAttemptType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The type of score that was attempted. See 'scoreattempt' SportsML vocabs for various sports: http://cv.iptc.org/newscodes/spbkbscoreattempt/ http://cv.iptc.org/newscodes/spichscoreattempt/ http://cv.iptc.org/newscodes/sprgxscoreattempt/ http://cv.iptc.org/newscodes/spsocscoreattempt/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="scoreunits">
+        <h3>score units<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/scoreUnits</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The units of a team's or individual's score in a given event (e.g. metres or seconds)
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="sequencenumber">
+        <h3>sequence number<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/sequenceNumber</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Sequence-number. Should be separate sequences for sub-actions inside an action
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="shotdistance">
+        <h3>shot distance<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/shotDistance</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Distance of the shot
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="shotdistanceunits">
+        <h3>shot distance units<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/shotDistanceUnits</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    SportsML vocab uri: http://cv.iptc.org/newscodes/spdistanceunits/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="shottype">
+        <h3>shot type<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/shotType</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The type of shot taken. See 'shot' SportsML vocabs for various sports: http://cv.iptc.org/newscodes/spgolshot/ http://cv.iptc.org/newscodes/sptenshot/ http://cv.iptc.org/newscodes/spcurshot/
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="site">
+        <h3>site<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/site</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Link to the location where an event takes place
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Site">sport:Site</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="sport">
+        <h3>sport<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/sport</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The sport which this competition represents
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Competition">sport:Competition</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#anyURI">xsd:anyURI</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="startdate">
+        <h3>start date<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/startDate</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The date on which a membership begins
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="startdatetime">
+        <h3>start datetime<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/startDateTime</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The date on which an event begins
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#date">xsd:date</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="startlocation">
+        <h3>start location<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/startLocation</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    >A string indicating where on the court the action began. Could be an approximate region, or a more complex value adhering to some elaborate coordinate system.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="subEvent">
+        <h3>subEvent<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/subEvent</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    A contest of competitive actions that comprises part of a competitive event.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Event">sport:Event</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="substitutionreason">
+        <h3>substitution reason<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/substitutionReason</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The reason for the substitution of a player
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="timeaddition">
+        <h3>time addition<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/timeAddition</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    time added to period.
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="timeelapsed">
+        <h3>time elapsed<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/timeElapsed</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Total time elapsed of event
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="timeremaining">
+        <h3>time remaining<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/timeRemaining</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Time remaining of event
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="uniformnumber">
+        <h3>uniform number<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/uniformNumber</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The number usually worn on a player's uniform (jersey etc.)
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/IndividualMembership">sport:IndividualMembership</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#integer">xsd:integer</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="zone">
+        <h3>zone<sup title="property" class="sup-p">p</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://sportschema.org/ontologies/main/zone</code></td>
+            </tr>
+            <tr>
+                <th>Is Defined By</th>
+                <td>
+                    https://sportschema.org/ontologies/main/
+                </td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    The zone on the playing field where the action took place. Value can be sport specific
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://sportschema.org/ontologies/main/Action">sport:Action</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+  
+  <section id="namedindividuals">
+    <h2>Named Individuals <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+    </ul>
+</section>
+  
+  <section id="namespaces">
+    <h2>Namespaces <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <dl>
+        <dt>dcterms</dt>
+        <dd><code>http://purl.org/dc/terms/</code></dd>
+        <dt>owl</dt>
+        <dd><code>http://www.w3.org/2002/07/owl#</code></dd>
+        <dt>prov</dt>
+        <dd><code>http://www.w3.org/ns/prov#</code></dd>
+        <dt>rdf</dt>
+        <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+        <dt>sdo</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>spamfstat</dt>
+        <dd><code>https://sportschema.org/ontologies/american-football/</code></dd>
+        <dt>spbblstat</dt>
+        <dd><code>https://sportschema.org/ontologies/baseball/</code></dd>
+        <dt>spbkbstat</dt>
+        <dd><code>https://sportschema.org/ontologies/basketball/</code></dd>
+        <dt>spgolstat</dt>
+        <dd><code>https://sportschema.org/ontologies/golf/</code></dd>
+        <dt>spmcrstat</dt>
+        <dd><code>https://sportschema.org/ontologies/motor-racing/</code></dd>
+        <dt>sport</dt>
+        <dd><code>https://sportschema.org/ontologies/main/</code></dd>
+        <dt>sprgxstat</dt>
+        <dd><code>https://sportschema.org/ontologies/rugby/</code></dd>
+        <dt>spsocstat</dt>
+        <dd><code>https://sportschema.org/ontologies/soccer/</code></dd>
+        <dt>spstat</dt>
+        <dd><code>https://sportschema.org/ontologies/corestatistics/</code></dd>
+        <dt>sptenstat</dt>
+        <dd><code>https://sportschema.org/ontologies/tennis/</code></dd>
+        <dt>spvolstat</dt>
+        <dd><code>https://sportschema.org/ontologies/volleyball/</code></dd>
+        <dt>xsd</dt>
+        <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+    </dl>
+</section>
+  <section id="legend">
+      <h2>Legend</h2>
+      <table class="entity">
+          <tr><td><sup class="sup-c" title="Classes">c</sup></td><td>Classes</td></tr>
+          <tr><td><sup class="sup-op" title="Object Properties">op</sup></td><td>Object Properties</td></tr>
+          <tr><td><sup class="sup-fp" title="Functional Properties">fp</sup></td><td>Functional Properties</td></tr>
+          <tr><td><sup class="sup-dp" title="Data Properties">dp</sup></td><td>Data Properties</td></tr>
+          <tr><td><sup class="sup-ap" title="Annotation Properties">dp</sup></td><td>Annotation Properties</td></tr>
+          <tr><td><sup class="sup-p" title="Properties">p</sup></td><td>Properties</td></tr>
+          <tr><td><sup class="sup-ni" title="Named Individuals">ni</sup></td><td>Named Individuals</td></tr>
+      </table>
+  </section>
+</body>
+</html>
